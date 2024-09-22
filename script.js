@@ -30,26 +30,19 @@ faqData.forEach(faq => {
 
 // Function to handle question input and find the closest matching FAQ
 function getAnswer() {
-    console.log("Submit button pressed");  // Debugging message to check button press
-    const input = document.getElementById('questionInput').value;
-
-    // Log the input for debugging purposes
-    console.log("User input: ", input);
+    const input = document.getElementById('questionInput').value.trim().toLowerCase();
 
     // Get the best match for the user's input (fuzzy matching)
     const results = fuzzySet.get(input);
-
-    // Log the fuzzy match results
-    console.log("Fuzzy match results: ", results);
 
     if (results && results.length > 0) {
         const bestMatch = results[0];
         const bestMatchScore = bestMatch[0];  // Similarity score
         const bestMatchQuestion = bestMatch[1];  // Matched question text
 
-        // Set a threshold of 0.3 (30%) for similarity
-        if (bestMatchScore >= 0.3) {
-            const matchedFAQ = faqData.find(faq => faq.question === bestMatchQuestion);
+        // Set a threshold of 0.5 (50%) for similarity to reduce bad matches
+        if (bestMatchScore >= 0.5) {
+            const matchedFAQ = faqData.find(faq => faq.question.toLowerCase() === bestMatchQuestion.toLowerCase());
             document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
         } else {
             document.getElementById('answer').innerText = "Sorry, I couldn't find a good match for your question.";
