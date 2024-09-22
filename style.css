@@ -1,88 +1,86 @@
-/* General styling for body */
+/* General body styling */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f8;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
-/* Container for chat elements */
+/* Chat container styling */
 .chat-container {
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-/* Styling for the chat box */
+/* Chat box styling */
 .chat-box {
-    background-color: #ffffff;
-    border-radius: 16px;
-    width: 500px;
-    max-width: 90%;
+    flex: 1;
     padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    font-family: 'Helvetica Neue', sans-serif;
-}
-
-/* Header for the FAQ auto responder */
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    color: #333;
-    font-weight: bold;
-}
-
-/* Input container for chat input and submit button */
-.chat-input-container {
+    overflow-y: auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
 }
 
-/* Styling for the text input */
-.chat-input {
-    width: 75%;
-    padding: 12px;
-    border-radius: 8px;
+.chat-box p {
+    margin: 10px 0;
+}
+
+/* User message */
+.user-message {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Bot message */
+.bot-message {
+    align-self: flex-start;
+    background-color: #eaeaea;
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+/* Input container styling */
+.input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background-color: white;
+}
+
+.input-container input {
+    flex: 1;
+    padding: 10px;
     border: 1px solid #ddd;
-    font-size: 1em;
+    border-radius: 20px;
     outline: none;
-    box-sizing: border-box;
-    background-color: #f2f2f2;
 }
 
-/* Styling for the submit button */
-.chat-submit {
-    padding: 12px 18px;
-    background-color: #28a745;
+.input-container button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 1em;
-    outline: none;
 }
 
-.chat-submit:hover {
-    background-color: #218838;
-}
-
-/* Chat response box */
-.chat-response {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 1em;
-    color: #333;
-    min-height: 50px;
-    word-wrap: break-word;
-    white-space: pre-wrap; /* Ensure line breaks */
+.input-container button:hover {
+    background-color: #0056b3;
 }
