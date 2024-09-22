@@ -32,13 +32,19 @@ faqData.forEach(faq => {
 function getAnswer() {
     const input = document.getElementById('questionInput').value.trim().toLowerCase();
 
+    // Log the input to see what is being processed
+    console.log("User input:", input);
+
     // Get the best match for the user's input (fuzzy matching)
     const results = fuzzySet.get(input);
+    console.log("Fuzzy matching results:", results);
 
     if (results && results.length > 0) {
         const bestMatch = results[0];
         const bestMatchScore = bestMatch[0];  // Similarity score
         const bestMatchQuestion = bestMatch[1];  // Matched question text
+
+        console.log("Best match:", bestMatchQuestion, "Score:", bestMatchScore);
 
         // Set a lower threshold to improve match results
         if (bestMatchScore >= 0.3) {  // Lower the threshold to catch more matches
