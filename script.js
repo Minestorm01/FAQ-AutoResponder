@@ -36,14 +36,18 @@ function getAnswer() {
     const results = fuzzySet.get(input);
 
     if (results && results.length > 0) {
-        // Find the best match question from the FAQ data
-        const bestMatchQuestion = results[0][1];
-        const matchedFAQ = faqData.find(faq => faq.question === bestMatchQuestion);
-        
-        // Display the matched answer
-        document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
+        const bestMatch = results[0];
+        const bestMatchScore = bestMatch[0];  // Similarity score
+        const bestMatchQuestion = bestMatch[1];  // Matched question text
+
+        // Set a threshold of 0.3 (30%) for similarity
+        if (bestMatchScore >= 0.3) {
+            const matchedFAQ = faqData.find(faq => faq.question === bestMatchQuestion);
+            document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
+        } else {
+            document.getElementById('answer').innerText = "Sorry, I couldn't find a good match for your question.";
+        }
     } else {
-        // No match found
-        document.getElementById('answer').innerText = "Sorry, I don't have an answer for that.";
+        document.getElementById('answer').innerText = "Sorry, I couldn't find a good match for your question.";
     }
 }
