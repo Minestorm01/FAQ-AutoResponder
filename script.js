@@ -40,8 +40,8 @@ function getAnswer() {
         const bestMatchScore = bestMatch[0];  // Similarity score
         const bestMatchQuestion = bestMatch[1];  // Matched question text
 
-        // Set a threshold of 0.5 (50%) for similarity to reduce bad matches
-        if (bestMatchScore >= 0.5) {
+        // Set a lower threshold to improve match results
+        if (bestMatchScore >= 0.3) {  // Lower the threshold to catch more matches
             const matchedFAQ = faqData.find(faq => faq.question.toLowerCase() === bestMatchQuestion.toLowerCase());
             document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
         } else {
