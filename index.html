@@ -4,19 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ Auto Responder</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuzzyset.js/0.0.1/fuzzyset.min.js"></script>
 </head>
 <body>
     <div class="chat-container">
-        <div id="chat-box" class="chat-box">
-            <!-- Chat messages will appear here -->
-        </div>
-        <div class="input-container">
-            <input type="text" id="questionInput" placeholder="Ask your question..." onkeypress="handleKeyPress(event)">
-            <button onclick="getAnswer()">Submit</button>
+        <div class="chat-box">
+            <h1>FAQ Auto Responder</h1>
+            <div class="chat-input-container">
+                <input type="text" id="questionInput" class="chat-input" placeholder="Ask your question...">
+                <button onclick="getAnswer()" class="chat-submit">Submit</button>
+            </div>
+            <div class="chat-response">
+                <p id="answer"></p>
+            </div>
         </div>
     </div>
+
+    <!-- Add this script tag at the end to see if any JavaScript errors are being logged -->
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.log("Error: " + message + " at line: " + lineno);
+        };
+    </script>
 </body>
 </html>
