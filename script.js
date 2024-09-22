@@ -30,10 +30,17 @@ faqData.forEach(faq => {
 
 // Function to handle question input and find the closest matching FAQ
 function getAnswer() {
+    console.log("Submit button pressed");  // Debugging message to check button press
     const input = document.getElementById('questionInput').value;
+
+    // Log the input for debugging purposes
+    console.log("User input: ", input);
 
     // Get the best match for the user's input (fuzzy matching)
     const results = fuzzySet.get(input);
+
+    // Log the fuzzy match results
+    console.log("Fuzzy match results: ", results);
 
     if (results && results.length > 0) {
         const bestMatch = results[0];
