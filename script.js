@@ -18,7 +18,6 @@ const faqData = [
     { question: "If a customer is wanting a refund can I refer them to Head office for authorisation?", answer: "If they are not entitled to a refund and there are no extenuating circumstances, no. If a refund is the best decision, do it." },
     { question: "Can a customer register their own Seiko purchase?", answer: "No, this needs to be completed in-store via the portal." },
     { question: "Do high value refunds need to be returned via cheque?", answer: "Refunds should be returned the same way they were paid. Exceptions can be made for high-value cash payments, but otherwise, it should go to the same card." },
-    { question: "My customer is asking for a bigger discount?", answer: "If the item is on sale or in a catalogue, you cannot discount it further. Offer the catalogue price if it’s relevant." },
     { question: "My customer wants to buy a JCP but it has been 5 weeks since they made their purchase.", answer: "Is the item in good condition? If yes, do the JCP." }
 ];
 
@@ -35,6 +34,13 @@ function getAnswer() {
     // Log the input to see what is being processed
     console.log("User input:", input);
 
+    // Check for important keywords (like JCP) first
+    if (input.includes("jcp") && input.includes("month")) {
+        const matchedFAQ = faqData.find(faq => faq.question.toLowerCase().includes("jcp"));
+        document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
+        return;
+    }
+
     // Get the best match for the user's input (fuzzy matching)
     const results = fuzzySet.get(input);
     console.log("Fuzzy matching results:", results);
@@ -46,8 +52,8 @@ function getAnswer() {
 
         console.log("Best match:", bestMatchQuestion, "Score:", bestMatchScore);
 
-        // Set a lower threshold to improve match results
-        if (bestMatchScore >= 0.3) {  // Lower the threshold to catch more matches
+        // Set a higher threshold to avoid low-quality matches
+        if (bestMatchScore >= 0.4) {  // Adjusted threshold
             const matchedFAQ = faqData.find(faq => faq.question.toLowerCase() === bestMatchQuestion.toLowerCase());
             document.getElementById('answer').innerText = matchedFAQ ? matchedFAQ.answer : "Sorry, I don't have an answer for that.";
         } else {
